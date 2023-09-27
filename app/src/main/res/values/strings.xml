@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Unidad4_Ejercicio1</string>
+    <string name="naciste">Naciste...</string>
+    <string name="calculo_fecha_nac">Calcula el número de días desde tu fecha de nacimiento</string>
+</resources>
