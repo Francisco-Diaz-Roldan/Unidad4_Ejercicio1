@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
                 val fechaSeleccionada = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
 
 
-                // Formateo la fecha seleccionada en el formato "día/mes/año"
+                // Convierto el formato de la fecha seleccionada al formato "día/mes/año"
                 val formatoCorrecto = DateTimeFormatter.ofPattern("dd/MM/yyyy")
                 val fechaSeleccionadaFormateada = fechaSeleccionada.format(formatoCorrecto)
 
