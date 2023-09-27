@@ -30,9 +30,8 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
         // Formateo la fecha actual hoy y la paso al formato "día/mes/año"
         val formatoCorrecto = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-        val fechaActualFormateada = hoy.format(formatoCorrecto)
 
-        fechaActual.setText("Hoy es ${hoy.format(formatoCorrecto)}" )
+        fechaActual.text = "Hoy es ${hoy.format(formatoCorrecto)}"
 
         val boton=findViewById<Button>(R.id.btnFechaNac)
         val c = Calendar.getInstance()
