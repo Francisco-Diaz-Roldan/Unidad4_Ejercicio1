@@ -36,14 +36,15 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnFecha"
+        android:id="@+id/btnFechaNac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="@color/grey"
         android:text="@string/fecha_nac"
         android:textColor="@color/dark_grey"
         app:iconTint="#5A5A5A"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tVEdad"
+        android:id="@+id/tVCalcularEdad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -64,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFecha"
+        app:layout_constraintTop_toBottomOf="@+id/btnFechaNac"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 

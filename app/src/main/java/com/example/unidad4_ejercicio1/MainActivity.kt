@@ -1,5 +1,6 @@
 package com.example.unidad4_ejercicio1
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
@@ -18,62 +19,61 @@ class MainActivity : AppCompatActivity(),OnClickListener {
     private var mMonth:Int = 0
     private var mDay:Int = 0
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Añado el texto del TextView que muestra la fecha actual
+
         val fechaActual : TextView = findViewById(R.id.tVFechaActual)
         val hoy =LocalDate.now()
-        fechaActual.setText("Hoy es: $hoy" )
 
-        val boton=findViewById<Button>(R.id.btnFecha)
+        // Formateo la fecha actual hoy y la paso al formato "día/mes/año"
+        val formatoCorrecto = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val fechaActualFormateada = hoy.format(formatoCorrecto)
+
+        fechaActual.setText("Hoy es ${hoy.format(formatoCorrecto)}" )
+
+        val boton=findViewById<Button>(R.id.btnFechaNac)
         val c = Calendar.getInstance()
         mYear = c[Calendar.YEAR]
         mMonth = c[Calendar.MONTH]
         mDay = c[Calendar.DAY_OF_MONTH]
         boton.setOnClickListener(this)
-
     }
 
     override fun onClick(v: View?) {
-        // Lanzar el DatePickerDialog
-        val c = Calendar.getInstance()
+        // Lanzo el DatePickerDialog
 
         val datePickerDialog = DatePickerDialog(this,
-            object : DatePickerDialog.OnDateSetListener {
-                override fun onDateSet(
-                    view: DatePicker, year: Int,
-                    monthOfYear: Int, dayOfMonth: Int
-                ) {//Aqui hago el codigo de lo que va a hacer el boton
-                    //Meto los valores para las fecha del calendario
-                    //Se asigna el valor para la fecha seleccionada
-                    val fechaSeleccionada = LocalDate.of(year,monthOfYear+1, dayOfMonth)
+            { view, year, monthOfYear, dayOfMonth ->
+                //Aqui hago el codigo del botón
+                //Introduzco los valores para las fechas del calendario
+
+                // Asigno el valor para la fecha seleccionada y le añado +1 al año porque va de 0 a 11
+                val fechaSeleccionada = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
 
 
-                    // Formateo la fecha seleccionada en el formato "día/mes/año"
-                    val formato = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-                    val fechaSeleccionadaFormateada = fechaSeleccionada.format(formato)
-
-                    //Asigno el valor para la fecha actual
-                    var fechaActual = LocalDate.now()
-                    // Formateo la fecha actual en el formato "día/mes/año"
-                    val fechaActualFormateada = fechaActual.format(formato)
-                    fechaActual=fechaActualFormateada
+                // Formateo la fecha seleccionada en el formato "día/mes/año"
+                val formatoCorrecto = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                val fechaSeleccionadaFormateada = fechaSeleccionada.format(formatoCorrecto)
 
 
-                    //Calculo la diferencia entre las 2 fechas
-                    val diferenciaFechas = fechaSeleccionada.until(fechaActual)
+                // Asigno el valor para la fecha actual con LocalDate.now()
+                val fechaActual = LocalDate.now()
 
 
-                    //Se declara el Text View en el que se reflejará y se ajustará su texto con año, mes y día
-                    var fechaNac :TextView = findViewById(R.id.tVNaciste)
-                    val edad : TextView = findViewById(R.id.tVEdad)
+                // Calculo la diferencia entre las 2 fechas (actual - nacimiento)
+                val diferenciaFechas = fechaSeleccionada.until(fechaActual)
 
-                    fechaNac.setText("Naciste el ${fechaSeleccionadaFormateada}")
+                // Declaro los TextViews en los que se mostrará la información de cada uno de ellos
+                val fechaNac: TextView = findViewById(R.id.tVNaciste)
+                val edad: TextView = findViewById(R.id.tVCalcularEdad)
 
-                    edad.setText("Tienes: ${diferenciaFechas.years} años, ${diferenciaFechas.months} meses y ${diferenciaFechas.days} dias")
-                }}
+                // Actualizo los TextViews
+                fechaNac.text = "Naciste el $fechaSeleccionadaFormateada"
+                edad.text = "Tienes ${diferenciaFechas.years} años, ${diferenciaFechas.months} meses y ${diferenciaFechas.days} días"
+            }
             , mYear, mMonth, mDay
         )
         datePickerDialog.show()
