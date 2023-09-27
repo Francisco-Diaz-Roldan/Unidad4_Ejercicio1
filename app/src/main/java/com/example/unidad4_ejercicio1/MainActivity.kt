@@ -11,6 +11,7 @@ import android.widget.DatePicker
 import android.widget.TextView
 import org.w3c.dom.Text
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity(),OnClickListener {
     private var mYear=0
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        //Añado el texto del TextView que muestra la fecha actual
         val fechaActual : TextView = findViewById(R.id.tVFechaActual)
         val hoy =LocalDate.now()
         fechaActual.setText("Hoy es: $hoy" )
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         mMonth = c[Calendar.MONTH]
         mDay = c[Calendar.DAY_OF_MONTH]
         boton.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
@@ -43,17 +45,25 @@ class MainActivity : AppCompatActivity(),OnClickListener {
                 override fun onDateSet(
                     view: DatePicker, year: Int,
                     monthOfYear: Int, dayOfMonth: Int
-                ) {//Aqui hago el codigo del boton
+                ) {//Aqui hago el codigo de lo que va a hacer el boton
                     //Meto los valores para las fecha del calendario
                     //Se asigna el valor para la fecha seleccionada
                     val fechaSeleccionada = LocalDate.of(year,monthOfYear+1, dayOfMonth)
                     //Asigno el valor para la fecha actual
                     val fechaActual = LocalDate.now()
+
+                    // Para pasar del formato año-mes-dia a dia/mes/año
+
+
                     //Calculo la diferencia entre las 2 fechas
                     val diferenciaFechas = fechaSeleccionada.until(fechaActual)
                     //Se declara el Text View en el que se reflejará y se ajustará su texto con año, mes y día
                     val edad : TextView = findViewById(R.id.tVFechaNac)
-                    edad.setText("Tienes: ${diferenciaFechas.years} años, ${diferenciaFechas.months} meses, ${diferenciaFechas.days} dias")
+
+                    var fechaNac :TextView = findViewById(R.id.tVNaciste)
+                    fechaNac.setText("Naciste el ${fechaSeleccionada}")
+
+                    edad.setText("Tienes: ${diferenciaFechas.years} años, ${diferenciaFechas.months} meses y ${diferenciaFechas.days} dias")
 
                 }}
             , mYear, mMonth, mDay

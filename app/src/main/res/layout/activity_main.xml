@@ -22,7 +22,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tVNaciste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -41,20 +41,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:backgroundTint="@color/grey"
-        android:text="Fecha de nacimiento"
+        android:text="@string/fecha_nac"
         android:textColor="@color/dark_grey"
-
         app:iconTint="#5A5A5A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/tVNaciste"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tVFechaNac"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:gravity="center"
