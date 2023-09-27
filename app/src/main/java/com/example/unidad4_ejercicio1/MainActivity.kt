@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(),OnClickListener {
     private var mMonth:Int = 0
     private var mDay:Int = 0
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,10 +43,9 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
     override fun onClick(v: View?) {
         // Lanzo el DatePickerDialog
-
         val datePickerDialog = DatePickerDialog(this,
             { view, year, monthOfYear, dayOfMonth ->
-                //Aqui hago el codigo del botón
+                //Aqui hago el codigo de lo que hace el botón cuando lo pulso
                 //Introduzco los valores para las fechas del calendario
 
                 // Asigno el valor para la fecha seleccionada y le añado +1 al año porque va de 0 a 11
